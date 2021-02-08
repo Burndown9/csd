@@ -1,15 +1,16 @@
 """ 
     Title: pytech_update.py
-    Author: Professor Krasso
-    Date: 10 July 2020
+    Author: Jacob Hayes
+    Date: 7 Feb 2021
     Description: Test program for updating a document in the pytech collection
+                using Professor Krasso's template
 """
 
 """ import statements """
-from pymongo import MongoClient
+from pymongo import MongoClient #pymongo allows us to interface with MongoDB
 
 # MongoDB connection string 
-url = "mongodb+srv://admin:admin@cluster0.rsnru.mongodb.net/pytech?retryWrites=true&w=majority"
+url = "mongodb+srv://admin:admin@cluster0.lazzm.mongodb.net/pytech"
 
 # connect to the MongoDB cluster 
 client = MongoClient(url)
@@ -22,6 +23,10 @@ students = db.students
 
 # find all students in the collection 
 student_list = students.find({})
+#in other words,
+#student_list = MongoClient(
+#                   mongodb+srv://admin:admin@cluster0.lazzm.mongodb.net/pytech).
+#                   pytech.students.find({})
 
 # display message 
 print("\n  -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
@@ -30,7 +35,7 @@ print("\n  -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
 for doc in student_list:
     print("  Student ID: " + doc["student_id"] + "\n  First Name: " + doc["first_name"] + "\n  Last Name: " + doc["last_name"] + "\n")
 
-# update student_id 1007
+# update student_id 1007 using $set to declare a property's value
 result = students.update_one({"student_id": "1007"}, {"$set": {"last_name": "Oakenshield II"}})
 
 # find the updated student document 

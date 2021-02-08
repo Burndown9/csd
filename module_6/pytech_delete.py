@@ -1,27 +1,28 @@
 """ 
     Title: pytech_delete.py
-    Author: Professor Krasso
-    Date: 13 July 2020
-    Description: Test program for deleting documents from the pytech collection
+    Author: Jacob Hayes
+    Date: 7 Feb 2021
+    Description: Test program for deleting documents from the pytech collection,
+                using Professor Krasso's code as a template
 """
 
 """ import statements """
-from pymongo import MongoClient
+from pymongo import MongoClient #pymongo lets us interface with MongoDB
 
 # MongoDB connection string 
-url = "mongodb+srv://admin:admin@cluster0.rsnru.mongodb.net/pytech?retryWrites=true&w=majority"
+url = "mongodb+srv://admin:admin@cluster0.lazzm.mongodb.net/pytech"
 
 # connect to the MongoDB cluster 
-client = MongoClient(url)
+client = MongoClient(url) #turns our connection string into a client we can interface
 
 # connect pytech database
 db = client.pytech
 
 # get the students collection 
-students = db.students
+students = db.students #(aka MongoClient(url).pytech.students)
 
 # find all students in the collection 
-student_list = students.find({})
+student_list = students.find({}) #without anything in {} returns all
 
 # display message 
 print("\n  -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
@@ -39,6 +40,8 @@ test_doc = {
 
 # insert the test document into MongoDB atlas 
 test_doc_id = students.insert_one(test_doc).inserted_id
+#this inserts test_doc using insert_one and then returns the inserted_id to 
+#test_doc_id for us to display to the user
 
 # insert statements with output 
 print("\n  -- INSERT STATEMENTS --")
@@ -61,7 +64,7 @@ new_student_list = students.find({})
 print("\n  -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
 
 # loop over the collection and output the results 
-for doc in new_student_list:
+for doc in new_student_list: #a for loop goes through every item in the collection
     print("  Student ID: " + doc["student_id"] + "\n  First Name: " + doc["first_name"] + "\n  Last Name: " + doc["last_name"] + "\n")
 
 # exit message 
