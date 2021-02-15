@@ -1,8 +1,9 @@
 """ 
     Title: pysports_queries.py
-    Author: Professor Krasso
-    Date: 15 July 2020
-    Description: Test program for executing queries against the pysports database. 
+    Author: Jacob Hayes
+    Date: 14 Feb 2020
+    Description: Test program for executing queries against the pysports database,
+        using Professor Krasso's template
 """
 
 """ import statements """
@@ -11,9 +12,9 @@ from mysql.connector import errorcode
 
 """ database config object """
 config = {
-    "user": "pysports_user",
-    "password": "MySQL8IsGreat!",
-    "host": "127.0.0.1",
+    "user": "root",
+    "password": "password",
+    "host": "localhost",
     "database": "pysports",
     "raise_on_warnings": True
 }
@@ -23,7 +24,7 @@ try:
 
     db = mysql.connector.connect(**config) # connect to the pysports database 
 
-    cursor = db.cursor()
+    cursor = db.cursor() #cursor object cam invoke SQL methods for us
 
     # select query from the team table 
     cursor.execute("SELECT team_id, team_name, mascot FROM team")
