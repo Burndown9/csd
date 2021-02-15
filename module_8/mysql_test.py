@@ -1,8 +1,9 @@
 """ 
-    Title: pysports_join_queries.py
-    Author: Professor Krasso
+    Title: mysql_test.py
+    Author: Jacob Hayes
     Date: 16 July 2020
-    Description: Test program for joining the player and team tables
+    Description: Test program to connect to the pysports database, using 
+    Professor Krasso's template
 """
 
 """ import statements """
@@ -12,8 +13,8 @@ from mysql.connector import errorcode
 """ database config object """
 config = {
     "user": "pysports_user",
-    "password": "MySQL8IsGreat!",
-    "host": "127.0.0.1",
+    "password": "password",
+    "host": "localhost",
     "database": "pysports",
     "raise_on_warnings": True
 }
@@ -21,7 +22,8 @@ config = {
 try:
     """ try/catch block for handling potential MySQL database errors """ 
 
-    db = mysql.connector.connect(**config) # connect to the pysports database 
+    db = mysql.connector.connect(**config)  # connect to the pysports database 
+                                            #config object holds authentication details
     
     # output the connection status 
     print("\n  Database user {} connected to MySQL on host {} with database {}".format(config["user"], config["host"], config["database"]))
