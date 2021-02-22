@@ -1,8 +1,9 @@
 """ 
     Title: pysports_join_queries.py
-    Author: Professor Krasso
-    Date: 16 July 2020
-    Description: Test program for joining the player and team tables
+    Author: Jacob Hayes
+    Date: 21 Feb 2021
+    Description: Test program for joining the player and team tables, using Professor
+                Krasso's template
 """
 
 """ import statements """
@@ -11,9 +12,9 @@ from mysql.connector import errorcode
 
 """ database config object """
 config = {
-    "user": "pysports_user",
-    "password": "MySQL8IsGreat!",
-    "host": "127.0.0.1",
+    "user": "root",
+    "password": "password",
+    "host": "localhost",
     "database": "pysports",
     "raise_on_warnings": True
 }
@@ -25,7 +26,7 @@ try:
 
     cursor = db.cursor()
 
-    # inner join query 
+    # inner join query (returns only those records that match) 
     cursor.execute("SELECT player_id, first_name, last_name, team_name FROM player INNER JOIN team ON player.team_id = team.team_id")
 
     # get the results from the cursor object 
